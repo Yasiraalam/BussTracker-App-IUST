@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_theme"
+    android:background="#FDFFFD"
     tools:context=".ui.fragments.RegisterFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -18,26 +18,44 @@
         android:src="@drawable/back_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="TODO" />
+        android:focusable="true" />
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
-        android:text="REGISTRATION"
-        android:textSize="32sp"
+        android:text="Islamic university of Science and technology Awantipora"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textColor="@color/app_theme"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register Here for Buss Service"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/textView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/Name_layout"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/Name_layout"
         style="@style/ThemeOverlay.Material3.TextInputEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/edit_text_background"
+        app:helperText="@string/required"
+        app:helperTextTextColor="@color/red"
+        android:maxEms="1"
         android:layout_marginTop="24dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,9 +64,11 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/Name"
             style="@style/ThemeOverlay.Material3.TextInputEditText"
+            android:maxLength="16"
+            android:backgroundTint="@color/edit_text_background"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Name" />
+            android:layout_height="match_parent"
+            android:hint="Name"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -56,16 +76,21 @@
         style="@style/ThemeOverlay.Material3.TextInputEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/edit_text_background"
+        app:helperText="@string/required"
+        android:maxEms="16"
+        app:helperTextTextColor="@color/red"
         android:layout_marginTop="24dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Name_layout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_lastname"
+            android:id="@+id/email_text"
             style="@style/ThemeOverlay.Material3.TextInputEditText"
+            android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"/>
@@ -75,8 +100,13 @@
         style="@style/ThemeOverlay.Material3.TextInputEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/edit_text_background"
+        app:helperText="@string/required"
+        app:helperTextTextColor="@color/red"
         android:layout_marginTop="24dp"
+        app:counterEnabled="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        app:counterMaxLength="16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,13 +121,28 @@
             android:hint="Password"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
+    <ProgressBar
+        android:id="@+id/progressbar_reg"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/conform_password_Layout"
         style="@style/ThemeOverlay.Material3.TextInputEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/edit_text_background"
+        app:helperText="@string/required"
+        app:counterEnabled="true"
+        app:counterMaxLength="16"
+        app:helperTextTextColor="@color/red"
         android:layout_marginTop="24dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,6 +152,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/conform_pass"
             style="@style/ThemeOverlay.Material3.TextInputEditText"
+            android:backgroundTint="@color/edit_text_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Conform Password"
@@ -117,8 +163,13 @@
         style="@style/ThemeOverlay.Material3.TextInputEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/edit_text_background"
+        app:helperText="@string/required"
+        app:helperTextTextColor="@color/red"
         android:layout_marginTop="24dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="14"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -129,20 +180,23 @@
             style="@style/ThemeOverlay.Material3.TextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/edit_text_background"
             android:hint="Registration No" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/Register_button"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginTop="60dp"
-        android:backgroundTint="#3F51B5"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/app_theme"
         android:text="Register Now"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Registration_layout"
-        app:layout_constraintVertical_bias="0.099" />
+        app:layout_constraintVertical_bias="0.099"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
