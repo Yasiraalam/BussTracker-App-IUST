@@ -1,4 +1,4 @@
-package com.yasir.busstracker.ui.fragments
+package com.yasir.busstracker.ui.loginfragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import com.yasir.busstracker.MainActivity
+import com.yasir.busstracker.ui.MainActivity
 import com.yasir.busstracker.R
 import com.yasir.busstracker.databinding.FragmentLoginBinding
 

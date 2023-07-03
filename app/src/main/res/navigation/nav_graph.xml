@@ -6,7 +6,7 @@
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.yasir.busstracker.ui.fragments.LoginFragment"
+        android:name="com.yasir.busstracker.ui.loginfragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.yasir.busstracker.ui.fragments.RegisterFragment"
+        android:name="com.yasir.busstracker.ui.loginfragments.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -34,12 +34,12 @@
     </fragment>
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.yasir.busstracker.MainActivity"
+        android:name="com.yasir.busstracker.ui.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.yasir.busstracker.ui.fragments.ForgotPasswordFragment"
+        android:name="com.yasir.busstracker.ui.loginfragments.ForgotPasswordFragment"
         android:label="ForgotPasswordFragment"
         tools:layout="@layout/fragment_forgot">
         <action

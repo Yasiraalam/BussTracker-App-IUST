@@ -4,17 +4,11 @@
         <item name="colorPrimary">@color/app_theme</item>
         <item name="colorPrimaryDark">@color/app_theme_light</item>
         <item name="android:statusBarColor">@color/app_theme</item>
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
-
-    <style name="Theme.BussTracker" parent="Base.Theme.BussTracker" />
 
     <style name="custom_card_view_style" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="shapeAppearanceOverlay">@style/custom_card_view</item>
     </style>
-
-
     <style name="custom_card_view" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/app_theme</item>
         <item name="colorPrimaryDark">@color/app_theme_light</item>
@@ -24,5 +18,10 @@
         <item name="cornerSizeTopLeft" >48dp</item>
         <item name="cornerSizeBottomLeft" >0dp</item>
         <item name="cornerSizeBottomRight" >0dp</item>
+    </style>
+    <style name="splash" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/app_theme</item>
+        <item name="colorPrimaryDark">@color/app_theme_light</item>
+        <item name="colorAccent">@color/app_theme</item>
     </style>
 </resources>

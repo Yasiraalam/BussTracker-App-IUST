@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FDFFFD"
-    tools:context=".ui.fragments.RegisterFragment">
+    tools:context=".ui.loginfragments.RegisterFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/back_to_login"

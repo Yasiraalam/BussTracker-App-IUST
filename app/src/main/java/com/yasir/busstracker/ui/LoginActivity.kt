@@ -3,10 +3,7 @@ package com.yasir.busstracker.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.auth.FirebaseAuth
-import com.yasir.busstracker.MainActivity
-import com.yasir.busstracker.R
 import com.yasir.busstracker.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -23,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if(firebaseAuth.currentUser!=null){
-           val intent = Intent(this,MainActivity::class.java)
+           val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }

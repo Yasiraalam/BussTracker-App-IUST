@@ -1,4 +1,4 @@
-package com.yasir.busstracker.ui.fragments
+package com.yasir.busstracker.ui.loginfragments
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -12,7 +12,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.yasir.busstracker.MainActivity
+import com.yasir.busstracker.ui.MainActivity
 import com.yasir.busstracker.R
 import com.yasir.busstracker.databinding.FragmentRegisterBinding
 
@@ -65,7 +65,7 @@ class RegisterFragment : Fragment() {
         firebaseAuth.createUserWithEmailAndPassword(validEmail,validPassword).addOnCompleteListener {
               if(it.isSuccessful){
                   binding.progressbarReg.visibility = View.GONE
-                  val intent = Intent(requireContext(),MainActivity::class.java)
+                  val intent = Intent(requireContext(), MainActivity::class.java)
                   startActivity(intent)
                   requireActivity().finish()
               }else{
