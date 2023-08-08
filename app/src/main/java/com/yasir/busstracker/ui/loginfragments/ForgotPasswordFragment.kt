@@ -33,6 +33,7 @@ class ForgotPasswordFragment : Fragment() {
 
                 if (it.isSuccessful) {
                     binding.ProgressBarForgot.visibility = View.GONE
+                    Toast.makeText(requireContext(), "Check your Email to Reset your Password", Toast.LENGTH_LONG).show()
                     findNavController().navigate(R.id.action_forgotPasswordFragment_to_loginFragment)
 
                 } else {

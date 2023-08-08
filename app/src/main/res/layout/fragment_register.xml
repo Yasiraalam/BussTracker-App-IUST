@@ -18,57 +18,46 @@
         android:src="@drawable/back_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:focusable="true" />
+        android:focusable="true"
+        android:contentDescription="TODO" />
+
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        android:text="Islamic university of Science and technology Awantipora"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:textColor="@color/app_theme"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="219dp"
+        android:layout_height="18dp"
+        android:layout_marginBottom="20dp"
         android:text="Register Here for Buss Service"
-        android:textSize="16sp"
         android:textAlignment="center"
         android:textColor="@color/black"
+        android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/textView3"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/Name_layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/Name_layout"/>
+        app:layout_constraintStart_toEndOf="@+id/back_to_login"
+        app:layout_constraintTop_toTopOf="@+id/back_to_login" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/Name_layout"
         style="@style/ThemeOverlay.Material3.TextInputEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:helperText="@string/required"
-        app:helperTextTextColor="@color/red"
-        android:maxEms="1"
-        android:layout_marginTop="24dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
+        android:maxEms="1"
+        app:helperText="@string/required"
+        app:helperTextTextColor="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView3">
+        app:layout_constraintTop_toBottomOf="@+id/back_to_login">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/Name"
             style="@style/ThemeOverlay.Material3.TextInputEditText"
-            android:maxLength="16"
-            android:backgroundTint="@color/edit_text_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Name"/>
+            android:backgroundTint="@color/edit_text_background"
+            android:hint="Name"
+            android:maxLength="16" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -184,19 +173,35 @@
             android:hint="Registration No" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/routes_selector"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/Registration_layout"
+        tools:layout_editor_absoluteX="16dp">
+
+        <AutoCompleteTextView
+            android:id="@+id/Routes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Route"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/Register_button"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginTop="15dp"
         android:backgroundTint="@color/app_theme"
         android:text="Register Now"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Registration_layout"
-        app:layout_constraintVertical_bias="0.099"/>
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
