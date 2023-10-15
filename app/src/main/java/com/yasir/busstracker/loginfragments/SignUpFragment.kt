@@ -1,4 +1,4 @@
-package com.yasir.busstracker.ui.loginfragments
+package com.yasir.busstracker.loginfragments
 
 import android.app.AlertDialog
 import android.widget.AdapterView
@@ -13,23 +13,28 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.yasir.busstracker.ui.MainActivity
 import com.yasir.busstracker.R
 import com.yasir.busstracker.databinding.FragmentRegisterBinding
+import com.yasir.busstracker.models.User
 
-class RegisterFragment : Fragment() {
+class SignUpFragment : Fragment() {
     private var _binding: FragmentRegisterBinding? = null
+    lateinit var user: User
+    
     private val binding get() = _binding!!
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
+        user = User()
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.backToLogin.setOnClickListener {
@@ -82,32 +87,38 @@ class RegisterFragment : Fragment() {
             "42--HUMHAMA CHOWK, PEERBAGH, HYDERPORA BRIDGE, SANAT NAGAR, NOWGAM, IUST",
             "43--QAZIGUND TO IUST VIA NH-44"
         )
-        val adapter = ArrayAdapter(requireContext(),R.layout.item_list,listOfRoutes)
+        val adapter = ArrayAdapter(requireContext(), R.layout.item_list, listOfRoutes)
         binding.Routes.setAdapter(adapter)
-        binding.Routes.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, id ->
-            val itemSelected = adapterView.getItemAtPosition(position)
-        }
+        binding.Routes.onItemClickListener =
+            AdapterView.OnItemClickListener { adapterView, view, position, id ->
+                val itemSelected = adapterView.getItemAtPosition(position)
+            }
 
         validationForm()
         binding.RegisterButton.setOnClickListener {
             binding.progressbarReg.visibility = View.VISIBLE
-            val validEmailtxt =binding.emailText.text.toString()
-            val validPasswordtxt =binding.passET.text.toString()
-            val validConformPasstxt =binding.conformPass.text.toString()
-            val validRegistrationNo =binding.registrationNo.text.toString()
-            val routes = binding.Routes.text.toString()
-            //TODO:Routes here
-            if(validEmailtxt.isNotEmpty() && validPasswordtxt.isNotEmpty() && validConformPasstxt.isNotEmpty() && validRegistrationNo.isNotEmpty()){
-                if(validPasswordtxt == validConformPasstxt){
-                    //TODO:Register user here
-                    registerUserFirebase(validEmailtxt,validPasswordtxt)
-                }else{
+            val userName = binding.Name.text.toString()
+            val validEmailtxt = binding.emailText.text.toString()
+            val validPasswordtxt = binding.passET.text.toString()
+            val validConformPasstxt = binding.conformPass.text.toString()
+            val validRegistrationNo = binding.registrationNo.text.toString()
+            val gender = binding.Genders.checkedRadioButtonId
+            val routeSelected = binding.Routes.text.toString()
+
+            if (userName.isNotEmpty() && validEmailtxt.isNotEmpty() && validPasswordtxt.isNotEmpty() && validConformPasstxt.isNotEmpty() && validRegistrationNo.isNotEmpty() &&
+                gender != -1 && routeSelected.isNotEmpty()
+            ) {
+                if (validPasswordtxt == validConformPasstxt) {
+                    //:Registering user here
+                    registerUserFirebase(validEmailtxt, validPasswordtxt)
+                } else {
                     validConformPass()
                     binding.progressbarReg.visibility = View.GONE
-                    Toast.makeText(requireContext(), "Password not matching", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Password not matching", Toast.LENGTH_SHORT)
+                        .show()
                 }
 
-            }else{
+            } else {
                 binding.progressbarReg.visibility = View.GONE
                 invalidForm()
                 resetForm()
@@ -116,81 +127,120 @@ class RegisterFragment : Fragment() {
         }
 
     }
-    private fun registerUserFirebase(validEmail:String,validPassword:String){
+
+    //2131231311 MALE code
+    //2131231310 FEMALE code
+    private fun registerUserFirebase(validEmail: String, validPassword: String) {
         firebaseAuth = FirebaseAuth.getInstance()
-        firebaseAuth.createUserWithEmailAndPassword(validEmail,validPassword).addOnCompleteListener {
-              if(it.isSuccessful){
-                  binding.progressbarReg.visibility = View.GONE
-                  val intent = Intent(requireContext(), MainActivity::class.java)
-                  startActivity(intent)
-                  requireActivity().finish()
-              }else{
-                  binding.progressbarReg.visibility = View.GONE
-                  Toast.makeText(requireContext(), "User not valid", Toast.LENGTH_SHORT).show()
-              }
-        }
+        firebaseAuth.createUserWithEmailAndPassword(validEmail, validPassword)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    //TODO info getting
+                    uploadUserdata()
+                    binding.progressbarReg.visibility = View.GONE
+                    val intent = Intent(requireContext(), MainActivity::class.java)
+                    activity?.startActivity(intent)
+                    activity?.finish()
+                } else {
+                    binding.progressbarReg.visibility = View.GONE
+                    Toast.makeText(requireContext(), "User not valid", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    private fun uploadUserdata() {
+
+        user.userName = binding.Name.text.toString()
+        user.userEmail = binding.emailText.text.toString()
+        user.userRegistrationNo = binding.registrationNo.text.toString()
+        user.route = binding.Routes.text.toString()
+        Firebase.firestore.collection("User").document(Firebase.auth.currentUser!!.uid).set(user)
+            .addOnSuccessListener {
+                Toast.makeText(requireContext(), "user info sent", Toast.LENGTH_SHORT).show()
+            }
+
+
     }
 
     private fun invalidForm() {
-        var message =""
-        if(binding.NameLayout.helperText !=null){
-            message += "\nName: "+binding.NameLayout.helperText
+        var message = ""
+        if (binding.NameLayout.helperText != null) {
+            message += "\nName: " + binding.NameLayout.helperText
         }
-        if(binding.emailLayout.helperText !=null){
-            message += "\nEmail: "+binding.emailLayout.helperText
+        if (binding.emailLayout.helperText != null) {
+            message += "\nEmail: " + binding.emailLayout.helperText
         }
-        if(binding.passwordLayout.helperText !=null){
-            message += "\nPassword: "+binding.passwordLayout.helperText
+        if (binding.passwordLayout.helperText != null) {
+            message += "\nPassword: " + binding.passwordLayout.helperText
         }
-        if(binding.conformPasswordLayout.helperText !=null){
-            message += "\nConformPassword: "+binding.conformPasswordLayout.helperText
+        if (binding.conformPasswordLayout.helperText != null) {
+            message += "\nConformPassword: " + binding.conformPasswordLayout.helperText
         }
-        if(binding.RegistrationLayout.helperText !=null){
-            message += "\nRegistration: "+binding.RegistrationLayout.helperText
+        if (binding.RegistrationLayout.helperText != null) {
+            message += "\nRegistration: " + binding.RegistrationLayout.helperText
         }
+        if (binding.Genders.checkedRadioButtonId == -1) {
+            message += "\nSelect Gender  "
+        }
+        if (binding.Routes.text.isEmpty()) {
+            message += "\nSelect Your Route No"
+        }
+
         AlertDialog.Builder(requireContext())
             .setTitle("Invalid Form")
             .setMessage(message)
-            .setPositiveButton("okay"){_,_,->
+            .setPositiveButton("okay") { _, _ ->
 
             }
             .show()
 
     }
-    private fun resetForm(){
-        var message = "Name: "+ binding.Name.text
-          message +="\nEmail: "+binding.emailText.text
-          message += "\nPassword: " +binding.passET.text
-          message += "\nConform Password: " +binding.conformPass.text
-          message += "\nRegistration No: " +binding.registrationNo.text
+
+    private fun resetForm() {
+        var message = "Name: " + binding.Name.text
+        message += "\nEmail: " + binding.emailText.text
+        message += "\nPassword: " + binding.passET.text
+        message += "\nConform Password: " + binding.conformPass.text
+        message += "\nRegistration No: " + binding.registrationNo.text
     }
 
-    private fun validationForm(){
-        emailFocusListner()
-        passwordFocusListner()
-        conformFocusListner()
-        registrationFocusListner()
+    private fun validationForm() {
+        emailFocusListener()
+        passwordFocusListener()
+        conformFocusListener()
+        registrationFocusListener()
 
     }
 
-    private fun registrationFocusListner() {
-        binding.registrationNo.setOnFocusChangeListener{ _, focused->
-            if(!focused){
+    private fun registrationFocusListener() {
+        binding.registrationNo.setOnFocusChangeListener { _, focused ->
+            if (!focused) {
                 binding.RegistrationLayout.helperText = validRegistration()
             }
         }
     }
+
+
+    private fun validateRegistrationNumber(registrationNo: String): Boolean {
+        val validRegNo = """^iust\d{10}$""".toRegex(RegexOption.IGNORE_CASE)
+        return validRegNo.matches(registrationNo)
+    }
     private fun validRegistration(): String? {
         val registrationNo = binding.registrationNo.text.toString()
-        if(registrationNo.isEmpty()){
-            return "Enter Registration No"
+        if(validateRegistrationNumber(registrationNo)){
+
+            if (registrationNo.isEmpty()) {
+                return "Enter Registration No"
+            }
+            return null
+        }else{
+            return "invalid Registration No"
         }
-        return null
     }
 
-    private fun conformFocusListner() {
-        binding.conformPass.setOnFocusChangeListener{ _, focused->
-            if(!focused){
+    private fun conformFocusListener() {
+        binding.conformPass.setOnFocusChangeListener { _, focused ->
+            if (!focused) {
                 binding.conformPasswordLayout.helperText = validConformPass()
             }
         }
@@ -198,31 +248,33 @@ class RegisterFragment : Fragment() {
 
     private fun validConformPass(): String? {
         val conformPass = binding.conformPass.text.toString()
-        if(conformPass!=binding.passET.text.toString()){
+        if (conformPass != binding.passET.text.toString()) {
             return "Password doesn't Matches"
         }
         return null
     }
 
-    private fun emailFocusListner(){
+    private fun emailFocusListener() {
 
-        binding.emailText.setOnFocusChangeListener{ _, focused->
-            if(!focused){
+        binding.emailText.setOnFocusChangeListener { _, focused ->
+            if (!focused) {
                 binding.emailLayout.helperText = validEmail()
             }
         }
     }
+
     private fun validEmail(): String? {
         val email = binding.emailText.text.toString()
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             return "Invalid Email Address"
         }
         return null
     }
-    private fun passwordFocusListner(){
 
-        binding.passET.setOnFocusChangeListener{ _, focused->
-            if(!focused){
+    private fun passwordFocusListener() {
+
+        binding.passET.setOnFocusChangeListener { _, focused ->
+            if (!focused) {
                 binding.passwordLayout.helperText = validPassword()
             }
         }
@@ -230,16 +282,16 @@ class RegisterFragment : Fragment() {
 
     private fun validPassword(): String? {
         val passwordText = binding.passET.text.toString()
-        if(passwordText.length < 8 ){
+        if (passwordText.length < 8) {
             return "Minimum 8 Character Password"
         }
-        if(!passwordText.matches(".*[A-Z].*".toRegex()) ){
+        if (!passwordText.matches(".*[A-Z].*".toRegex())) {
             return "Must Contain 1 Upper-case  Character"
         }
-        if(!passwordText.matches(".*[a-z].*".toRegex()) ){
+        if (!passwordText.matches(".*[a-z].*".toRegex())) {
             return "Must Contain 1 Lower-case  Character"
         }
-        if(!passwordText.matches(".*[@#\$%^&+=].*".toRegex()) ){
+        if (!passwordText.matches(".*[@#\$%^&+=].*".toRegex())) {
             return "Must Contain 1 Special Character (@#\$%^&+=)"
         }
         return null

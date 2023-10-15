@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.yasir.busstracker.R
 import com.yasir.busstracker.databinding.ActivitySplashBinding
 import com.yasir.busstracker.ui.LoginActivity
+import com.yasir.busstracker.ui.MainActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -25,6 +26,7 @@ class SplashActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
-        }, 2000)
+        }, 1500)
     }
+
 }

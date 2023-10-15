@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">555170917698-oobrmdvktc5o1msljsrlucqehelkbbsl.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">555170917698</string>
+    <string name="google_api_key" translatable="false">AIzaSyCATm6mn7KX5rVubDK01ZMkERAbra7rVOo</string>
+    <string name="google_app_id" translatable="false">1:555170917698:android:da98b27ee2c871cf4b6cdb</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCATm6mn7KX5rVubDK01ZMkERAbra7rVOo</string>
+    <string name="google_storage_bucket" translatable="false">busstracker-def4d.appspot.com</string>
+    <string name="project_id" translatable="false">busstracker-def4d</string>
+</resources>

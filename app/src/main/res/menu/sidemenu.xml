@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item
+            android:id="@+id/notifications"
+            android:icon="@drawable/notifications_icon"
+            android:title="Notifications" />
+
+    <group android:checkableBehavior="single">
+        <item android:title="setting and privacy">
+            <menu>
+                <item
+                    android:id="@+id/setting"
+                    android:icon="@drawable/settings_icon"
+                    android:title="Setting" />
+                <item
+                    android:id="@+id/setting_privacy"
+                    android:icon="@drawable/security_icon"
+                    android:title="Privacy and Security" />
+            </menu>
+        </item>
+
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item android:title="Sharing">
+
+            <menu>
+                <item android:id="@+id/sharing_menu"
+                    android:title="Share"
+                    android:icon="@drawable/share_icon"/>
+
+            </menu>
+        </item>
+
+    </group>
+    <group android:checkableBehavior="single">
+        <item android:title="Authentication">
+
+            <menu>
+                <item android:id="@+id/login"
+                    android:title="Login"
+                    android:icon="@drawable/login_icon"/>
+                <item android:id="@+id/logout"
+                    android:title="Logout"
+                    android:icon="@drawable/logout_icon"/>
+            </menu>
+        </item>
+    </group>
+    <item android:id="@+id/about_us"
+        android:title="About us"
+        android:icon="@drawable/aboutus_icon"/>
+
+</menu>

@@ -1,4 +1,4 @@
-package com.yasir.busstracker.ui.loginfragments
+package com.yasir.busstracker.loginfragments
 
 import android.content.Intent
 import android.os.Bundle

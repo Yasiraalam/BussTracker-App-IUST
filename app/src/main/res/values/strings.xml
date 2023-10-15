@@ -3,4 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="required"></string>
+    <string name="API_KEY">AIzaSyB38DEcDjx9u74wmXzaHQpnz1UNAJgMDpQ</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
 </resources>

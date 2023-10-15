@@ -24,4 +24,16 @@
         <item name="colorPrimaryDark">@color/app_theme_light</item>
         <item name="colorAccent">@color/app_theme</item>
     </style>
+    <style name="themetoolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorPrimary">@color/app_theme</item>
+        <item name="colorPrimaryDark">@color/app_theme_light</item>
+        <item name="colorAccent">@color/app_theme</item>
+    </style>
+
+    //for imageRounded
+    <style name="roundimageview" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50dp</item>
+        <item name="color">@color/white</item>
+    </style>
 </resources>
