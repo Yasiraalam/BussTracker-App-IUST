@@ -14,6 +14,8 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -29,9 +31,11 @@ class SignUpFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
+    private lateinit var databaseReference: DatabaseReference
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         user = User()
+        databaseReference = FirebaseDatabase.getInstance().getReference("User")
         return binding.root
     }
 
@@ -156,10 +160,34 @@ class SignUpFragment : Fragment() {
         user.route = binding.Routes.text.toString()
         Firebase.firestore.collection("User").document(Firebase.auth.currentUser!!.uid).set(user)
             .addOnSuccessListener {
-                Toast.makeText(requireContext(), "user info sent", Toast.LENGTH_SHORT).show()
+                //save in realtime database
+                SaveDataInRealTimeDB()
+                Toast.makeText(requireContext(), "user info saved", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(requireContext(), "Failed SignIn", Toast.LENGTH_SHORT).show()
             }
 
 
+    }
+    private fun SaveDataInRealTimeDB(){
+        val uid = firebaseAuth.currentUser?.uid
+        val userName = binding.Name.text.toString().trim()
+        val userEmail = binding.emailText.text.toString().trim()
+        val userRegistrationNo = binding.registrationNo.text.toString().trim()
+        val route = binding.Routes.text.toString().trim()
+        val userdata = User(userName,userEmail,userRegistrationNo,route)
+        if (uid != null){
+            databaseReference.child(uid).setValue(userdata).addOnCompleteListener {
+                if(it.isSuccessful){
+                    Toast.makeText(requireContext(), "UPLOADED SUCCESSFULLY", Toast.LENGTH_SHORT).show()
+
+                }else{
+                    Toast.makeText(requireContext(), "Failed to update profile", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
+        }
     }
 
     private fun invalidForm() {

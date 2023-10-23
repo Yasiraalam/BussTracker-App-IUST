@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "555170917698",
+    "project_id": "busstracker-def4d",
+    "storage_bucket": "busstracker-def4d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:555170917698:android:da98b27ee2c871cf4b6cdb",
+        "android_client_info": {
+          "package_name": "com.yasir.busstracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "555170917698-oobrmdvktc5o1msljsrlucqehelkbbsl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCATm6mn7KX5rVubDK01ZMkERAbra7rVOo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "555170917698-oobrmdvktc5o1msljsrlucqehelkbbsl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
