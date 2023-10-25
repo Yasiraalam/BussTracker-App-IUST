@@ -27,11 +27,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
+        android:layout_marginStart="10dp"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/settings_icon" />
@@ -43,7 +44,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
             android:text="Settings and privacy"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -51,11 +52,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
+        android:layout_marginStart="10dp"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/notifications_icon" />
@@ -67,7 +69,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
             android:text="Notifications"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -75,11 +77,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
+        android:layout_marginStart="10dp"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/security_icon" />
@@ -91,7 +94,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
             android:text="Privacy and Security"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -99,11 +102,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
+        android:layout_marginStart="10dp"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/aboutus_icon" />
@@ -115,7 +119,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
             android:text="About Us"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -123,11 +127,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
+        android:layout_marginStart="10dp"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/share_icon" />
@@ -139,7 +144,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
             android:text="Share"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -147,11 +152,12 @@
         android:id="@+id/logout_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/logout_icon" />
@@ -163,14 +169,15 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
             android:text="Logout"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Terms and conditions"
-        android:layout_margin="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
         android:textColor="@color/app_theme"
         android:textSize="14sp"/>
 

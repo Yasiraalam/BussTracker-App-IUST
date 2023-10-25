@@ -17,7 +17,4 @@ class SettingPrivacyFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_setting_privacy_, container, false)
     }
 
-    companion object {
-
-    }
 }

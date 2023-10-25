@@ -18,6 +18,11 @@
         android:theme="@style/Base.Theme.BussTracker"
         tools:targetApi="31">
         <activity
+            android:name=".mainfragments.profile"
+            android:exported="false"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/Base.Theme.BussTracker" />
+        <activity
             android:name=".ui.MainSettingActivity"
             android:exported="false" />
         <activity

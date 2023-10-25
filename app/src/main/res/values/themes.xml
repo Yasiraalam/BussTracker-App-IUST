@@ -36,4 +36,9 @@
         <item name="cornerSize">50dp</item>
         <item name="color">@color/white</item>
     </style>
+  <!-- Base application theme. -->
+    <style name="Base.Base.Theme.BussTracker" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
 </resources>

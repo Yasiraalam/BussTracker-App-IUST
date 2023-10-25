@@ -33,9 +33,9 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
     private lateinit var autocompleteFragment: AutocompleteSupportFragment
     private val callback = OnMapReadyCallback { googleMap ->
 
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val iust = LatLng(33.921660, 75.012202)
+        googleMap.addMarker(MarkerOptions().position(iust).title("IUST Awantipora"))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(iust))
     }
 
     override fun onCreateView(

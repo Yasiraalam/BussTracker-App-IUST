@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
+import com.google.firebase.messaging.FirebaseMessaging
 import com.yasir.busstracker.R
 import com.yasir.busstracker.databinding.ActivityMainBinding
 import com.yasir.busstracker.mainfragments.SettingFragment
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        FirebaseMessaging.getInstance().subscribeToTopic("notifications")
         replaceFragment(MapsFragment())
         binding.BottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
